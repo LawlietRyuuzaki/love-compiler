@@ -17,5 +17,5 @@ if arg[1] then
   pathCompile = "/home/shizzuru/Documents/atom/lua/compiler/"
   createWindowsExecutable()
 else
-  print("One argument requireds")
+  print("One argument required")
 end
