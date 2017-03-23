@@ -1,0 +1,21 @@
+#!/usr/bin/env lua
+
+function createWindowsExecutable()
+  if io.open(pathFile .. "/main.lua", "r") == nil then
+    print("main.lua is required in order to create an executable")
+  else
+    os.execute("cd " .. pathFile .. " && zip -9 -r " .. pathFile .. "/" .. file .. ".love ." )
+    os.execute("mkdir -p ".. pathFile .."/bin")
+    os.execute("cat " .. pathCompile .. "love.exe " .. pathFile .. "/" .. file .. ".love > " .. pathFile .. "/bin/" .. file .. ".exe")
+    os.execute("cp " .. pathCompile .. "*.dll " .. pathFile .. "/bin/")
+  end
+end
+
+if arg[1] then
+  file = (string.gsub(arg[1], "/", ""))
+  pathFile = "/home/shizzuru/Documents/atom/lua/" .. file
+  pathCompile = "/home/shizzuru/Documents/atom/lua/compiler/"
+  createWindowsExecutable()
+else
+  print("One argument requireds")
+end
